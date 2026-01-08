@@ -1,70 +1,145 @@
-This is a vibe coded project, enjoy!
+📄 Automated Document Generation & Conversion
 
-Automated Document Generation and Conversion
-This project provides a Python script to automate the generation of personalized Word documents (.docx) from a template, using data from a CSV file. It further enhances this process by conditionally converting these generated Word documents into PDF format (.pdf) based on a specified column in the input data, leveraging LibreOffice for the conversion.
+A vibe-coded Python project — plug in your data, hit run, and let the docs generate themselves 😌
 
-Features
-Placeholder Replacement: Dynamically replaces placeholders (e.g., {{COLUMN_HEADER}}) in a Word template with corresponding data from each row of a CSV file.
-Conditional Output Format: Determines whether to output a .docx or .pdf file for each record based on a 'PDF' boolean column in the input data.
-LibreOffice Integration: Uses the headless (terminal) version of LibreOffice for robust and reliable .docx to .pdf conversion.
-Organized Output: Creates separate directories for .docx and .pdf outputs to keep generated files neatly organized.
-Error Handling: Includes error handling for LibreOffice installation and document conversion processes.
-Sample Data and Template: Automatically creates a sample data.csv and template.docx if they don't exist, making it easy to get started.
-Requirements
-Before running the script, ensure you have the following installed:
+This project automates the creation of personalized Word documents (.docx) from a template using data from a CSV file.
+It can also optionally convert those documents to PDF based on a simple boolean flag — powered by LibreOffice (headless).
+
+Perfect for letters, invoices, certificates, or any bulk document workflow.
+
+✨ Features
+
+Placeholder Replacement
+Dynamically replaces placeholders like {{COLUMN_HEADER}} in a Word template with CSV data.
+
+Conditional PDF Conversion
+Uses a PDF boolean column to decide whether each document should be saved as .docx or converted to .pdf.
+
+LibreOffice Integration
+Converts .docx → .pdf using LibreOffice in headless (terminal) mode.
+
+Organized Output
+Automatically separates outputs into clean folders for DOCX and PDF files.
+
+Error Handling
+Handles missing LibreOffice installs and conversion failures gracefully.
+
+Zero-Friction Setup
+Auto-generates sample data.csv and template.docx if they don’t exist.
+
+📦 Requirements
+
+Make sure you have the following installed:
 
 Python 3.x
-pandas: pip install pandas
-python-docx: pip install python-docx
-LibreOffice: The script attempts to install libreoffice-writer and libreoffice-calc using sudo apt-get install (for Debian-based systems like Colab). If running locally, you might need to install LibreOffice manually.
-How to Use
-1. Prepare Your Data File (CSV)
-Create a CSV file (e.g., data.csv) with your data. The column headers in this file will correspond to the placeholders in your Word template. Include a boolean column named PDF (case-sensitive) where True indicates that the document for that row should be converted to PDF, and False indicates it should remain in DOCX format.
 
-Example data.csv content:
+pandas
+
+pip install pandas
+
+
+python-docx
+
+pip install python-docx
+
+
+LibreOffice
+
+On Debian/Ubuntu/Colab:
+
+sudo apt-get install libreoffice-writer libreoffice-calc
+
+
+On other systems, install LibreOffice manually.
+
+🚀 How to Use
+1️⃣ Prepare Your CSV File
+
+Create a data.csv file.
+Each column header becomes a placeholder in the Word template.
+
+⚠️ Include a case-sensitive boolean column named PDF:
+
+True → Convert to PDF
+
+False → Keep as DOCX
+
+Example data.csv:
 
 NAME,ADDRESS,AMOUNT,PDF
 Alice,123 Main St,100.50,True
 Bob,456 Oak Ave,200.75,True
 Charlie,789 Pine Ln,150.00,True
 David,101 Elm Rd,300.25,False
-2. Prepare Your Word Template (DOCX)
-Create a Word document (e.g., template.docx) that will serve as your template. Insert placeholders for the dynamic content using double curly braces {{COLUMN_HEADER}}. Ensure that the placeholder names exactly match your CSV column headers.
 
-Example template.docx content:
+2️⃣ Prepare Your Word Template
 
-# Personalized Document
+Create template.docx and insert placeholders using double curly braces.
+
+The placeholder names must exactly match your CSV headers.
+
+Example template.docx:
+
+Personalized Document
 
 Dear {{NAME}},
 
 This document is personalized for you at {{ADDRESS}}.
 
 The amount due is ${{AMOUNT}}.
-3. Run the Python Script
-Place your data.csv and template.docx in the same directory as your Python script. The script will:
 
-Install LibreOffice (if not already installed).
-Load data.csv into a pandas DataFrame.
-For each row in the DataFrame:
-Load template.docx.
-Replace all {{PLACEHOLDER}} with the row's data.
-If the PDF column for that row is True, it will save a temporary DOCX, convert it to PDF using LibreOffice, and then delete the temporary DOCX.
-If the PDF column is False, it will save the document as a DOCX.
-Example execution flow (as seen in Colab):
+3️⃣ Run the Script
 
-# This code block (cell b2a713a9) contains the full script
-# It will create/load data.csv and template.docx
-# Install LibreOffice if needed, and then generate documents.
+Place the script, data.csv, and template.docx in the same directory, then run:
+
+python main.py
+
+
+The script will:
+
+Install LibreOffice (if needed)
+
+Load the CSV file
+
+Generate one document per row
+
+Convert to PDF when PDF=True
+
+Clean up temporary files
+
+🧠 Example Execution Flow
 import pandas as pd
 import os
 from docx import Document
 import subprocess
 
-# ... (rest of the script as provided in the notebook)
+# ... full script logic ...
 
 print("Document generation complete.")
-4. Output Files
-The generated documents will be saved in the following directories:
 
-output_documents_docx/: Contains all .docx files, including those that were not converted to PDF and temporary .docx files if the conversion failed.
-output_documents_pdf/: Contains all .pdf files generated from the .docx templates.
+📁 Output Structure
+
+After running the script, you’ll get:
+
+output_documents_docx/
+│── document_1.docx
+│── document_2.docx
+
+output_documents_pdf/
+│── document_1.pdf
+│── document_2.pdf
+
+
+DOCX folder
+Contains all .docx files and any temporary files if conversion fails.
+
+PDF folder
+Contains all successfully converted PDFs.
+
+💫 Final Notes
+
+Works great in Google Colab, Linux servers, and local machines
+
+Easy to extend for email sending, branding, or batch workflows
+
+Built to be practical, flexible, and just a little bit ✨extra✨
