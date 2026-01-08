@@ -99,7 +99,7 @@ Clean Up: Removes temporary files and organizes final versions.
 After running the script, your directory will be organized as follows:
 
 Plaintext
-
+```bash
 project-folder/
 │── main.py
 │── data.csv
@@ -110,13 +110,12 @@ project-folder/
 └── output_documents_pdf/    <-- Contains all successfully converted PDFs
     ├── document_1.pdf
     └── document_2.pdf
+```
 DOCX folder: Contains all .docx files and any temporary files if conversion fails.
 
 PDF folder: Contains all successfully converted PDFs.
 
 💫 Final Notes
-Works great in Google Colab, Linux servers, and local machines.
-
-Easy to extend for email sending, branding, or batch workflows.
-
-Built to be practical, flexible, and just a little bit ✨extra✨.
+> Works great in Google Colab, Linux servers, and local machines.
+> Easy to extend for email sending, branding, or batch workflows.
+> Built to be practical, flexible, and just a little bit ✨extra✨.
