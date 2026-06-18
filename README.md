@@ -1,6 +1,4 @@
-# 📄 Automated Document Generation & Conversion
-
-A vibe-coded Python project — plug in your data, hit run, and let the docs generate themselves 😌
+# Automated Document Generation & Conversion
 
 This project automates the creation of personalized Word documents (`.docx`) from a template using data from a CSV file. It can also optionally convert those documents to PDF based on a simple boolean flag — powered by **LibreOffice (headless)**.
 
@@ -8,7 +6,7 @@ Perfect for letters, invoices, certificates, or any bulk document workflow.
 
 ---
 
-## ✨ Features
+##  Features
 
 * **Placeholder Replacement:** Dynamically replaces placeholders like `{{COLUMN_HEADER}}` in a Word template with CSV data.
 * **Conditional PDF Conversion:** Uses a `PDF` boolean column to decide whether each document should be saved as `.docx` or converted to `.pdf`.
@@ -19,7 +17,7 @@ Perfect for letters, invoices, certificates, or any bulk document workflow.
 
 ---
 
-## 📦 Requirements
+##  Requirements
 
 Make sure you have the following installed:
 
@@ -41,9 +39,9 @@ Make sure you have the following installed:
 
 ---
 
-## 🚀 How to Use
+##  How to Use
 
-### 1️⃣ Prepare Your CSV File
+###  Prepare Your CSV File
 Create a `data.csv` file. Each column header becomes a placeholder in the Word template. 
 
 > [!IMPORTANT]
@@ -60,7 +58,7 @@ Create a `data.csv` file. Each column header becomes a placeholder in the Word t
 | Charlie | 789 Pine Ln | 150.00 | True |
 | David | 101 Elm Rd | 300.25 | False |
 ```
-### 2️⃣ Prepare Your Word Template
+### Prepare Your Word Template
 Create `template.docx` and insert placeholders using double curly braces. The placeholder names must **exactly match** your CSV headers.
 
 ```bash
@@ -73,14 +71,14 @@ Create `template.docx` and insert placeholders using double curly braces. The pl
 > The amount due is ${{AMOUNT}}.
 ```
 
-### 3️⃣ Run the Script
+###  Run the Script
 Place the script, `data.csv`, and `template.docx` in the same directory, then run:
 
 ```bash
 python main.py
 ```
+Execution Flow
 
-🧠 Execution Flow
 The script will automatically perform the following:
 
 Check Environment: Verifies if LibreOffice is installed for PDF conversion.
@@ -95,7 +93,7 @@ Clean Up: Removes temporary files and organizes final versions.
 
 
 
-📁 Output Structure
+Output Structure
 After running the script, your directory will be organized as follows:
 
 Plaintext
@@ -114,8 +112,3 @@ project-folder/
 DOCX folder: Contains all .docx files and any temporary files if conversion fails.
 
 PDF folder: Contains all successfully converted PDFs.
-
-💫 Final Notes
-> Works great in Google Colab, Linux servers, and local machines.
-> Easy to extend for email sending, branding, or batch workflows.
-> Built to be practical, flexible, and just a little bit ✨extra✨.
